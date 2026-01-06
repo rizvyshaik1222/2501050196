@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusConnect - Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="campus-connect">
+<div class="dashboard-layout">
+  <!-- Sidebar -->
+  <aside class="campus-sidebar">
+    <div class="campus-brand">
+      <div class="brand-icon">🎓</div>
+      <h1 class="brand-name">Student Connect </h1>
+    </div>
+    
+    <nav class="campus-nav">
+      <a href="#" onclick="loadPage('home')" class="campus-nav-item active">
+        <span class="nav-icon">📊</span>
+        <span class="nav-text">Dashboard</span>
+      </a>
+      <a href="#" onclick="loadPage('attendance')" class="campus-nav-item">
+        <span class="nav-icon">✓</span>
+        <span class="nav-text">Attendance</span>
+      </a>
+      <a href="#" onclick="loadPage('grades')" class="campus-nav-item">
+        <span class="nav-icon">⭐</span>
+        <span class="nav-text">Marks</span>
+      </a>
+      <a href="#" onclick="loadPage('courses')" class="campus-nav-item">
+        <span class="nav-icon">📅</span>
+        <span class="nav-text">Timetable</span>
+      </a>
+      <a href="#" onclick="loadPage('events')" class="campus-nav-item">
+        <span class="nav-icon">📅</span>
+        <span class="nav-text">Events</span>
+      </a>
+      <a href="#" onclick="loadPage('assignments')" class="campus-nav-item">
+        <span class="nav-icon">✏️</span>
+        <span class="nav-text">Assignments</span>
+      </a>
+      <a href="#" onclick="loadPage('achievements')" class="campus-nav-item">
+        <span class="nav-icon">🏆</span>
+        <span class="nav-text">Achievements</span>
+      </a>
+      <a href="#" onclick="loadPage('notices')" class="campus-nav-item">
+        <span class="nav-icon">🔔</span>
+        <span class="nav-text">Notices</span>
+      </a>
+      <a href="#" onclick="loadPage('faculty')" class="campus-nav-item">
+        <span class="nav-icon">👨‍🏫</span>
+        <span class="nav-text">Faculty</span>
+      </a>
+      <a href="#" onclick="loadPage('profile')" class="campus-nav-item">
+        <span class="nav-icon">👤</span>
+        <span class="nav-text">Profile</span>
+      </a>
+      <a href="#" onclick="loadPage('gpa')" class="campus-nav-item">
+        <span class="nav-icon">🧮</span>
+        <span class="nav-text">GPA Calculator</span>
+      </a>
+    </nav>
+    
+    <div class="campus-sidebar-footer">
+      <a href="#" onclick="logout()" class="campus-nav-item">
+        <span class="nav-icon">🚪</span>
+        <span class="nav-text">Logout</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="campus-main">
+    <!-- Top Header -->
+    <header class="campus-header">
+      <h1 class="page-title">Dashboard</h1>
+      <div class="header-actions">
+        <button class="notification-btn" onclick="loadPage('notices')" title="Notifications">
+          🔔
+          <span class="notification-badge">1</span>
+        </button>
+        <div class="user-profile" onclick="loadPage('profile')">
+          <span class="user-avatar">👤</span>
+          <span class="user-name" id="headerUserName">Profile</span>
+        </div>
+        <button class="logout-btn-desktop" onclick="logout()">Logout</button>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <section class="campus-content" id="contentArea">
+      <!-- Stats Cards -->
+      <div class="campus-stats-grid">
+        <div class="campus-stat-card">
+          <div class="stat-icon attendance-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+          </div>
+          <div class="stat-content">
+            <span class="stat-label">ATTENDANCE</span>
+            <h2 class="stat-value">92%</h2>
+            <span class="stat-subtitle">This semester</span>
+          </div>
+        </div>
+
+        <div class="campus-stat-card">
+          <div class="stat-icon gpa-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+            </svg>
+          </div>
+          <div class="stat-content">
+            <span class="stat-label">GPA</span>
+            <h2 class="stat-value">3.8/4.0</h2>
+            <span class="stat-subtitle">Cumulative</span>
+          </div>
+        </div>
+
+        <div class="campus-stat-card">
+          <div class="stat-icon assignments-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
+            </svg>
+          </div>
+          <div class="stat-content">
+            <span class="stat-label">UPCOMING ASSIGNMENTS</span>
+            <h2 class="stat-value">8</h2>
+            <span class="stat-subtitle">In the next 7 days</span>
+          </div>
+        </div>
+
+        <div class="campus-stat-card">
+          <div class="stat-icon courses-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/>
+            </svg>
+          </div>
+          <div class="stat-content">
+            <span class="stat-label">ENROLLED COURSES</span>
+            <h2 class="stat-value">5</h2>
+            <span class="stat-subtitle">Current semester</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fee Details & Payment Section -->
+      <div class="campus-section">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">💳 Fee Details & Payment</h2>
+            <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.95);">Your tuition and other fees at a glance.</p>
+          </div>
+          <button class="view-all-btn" onclick="alert('Payment portal will open')">
+            Pay Online →
+          </button>
+        </div>
+
+        <div class="fees-grid">
+          <div class="fee-card">
+            <div class="fee-header">
+              <h3 class="fee-title">Tuition Fee</h3>
+            </div>
+            <div class="fee-amount">₹2,15,000</div>
+            <div class="fee-status">
+              <span class="status-badge status-paid">✓ Paid</span>
+            </div>
+          </div>
+
+          <div class="fee-card">
+            <div class="fee-header">
+              <h3 class="fee-title">Library Fee</h3>
+            </div>
+            <div class="fee-amount">₹2,450</div>
+            <div class="fee-status">
+              <span class="status-badge status-paid">✓ Paid</span>
+            </div>
+          </div>
+
+          <div class="fee-card">
+            <div class="fee-header">
+              <h3 class="fee-title">Laboratory Fee</h3>
+            </div>
+            <div class="fee-amount">₹10,600</div>
+            <div class="fee-status">
+              <span class="status-badge status-due">⚠ Due: Jan 15</span>
+            </div>
+          </div>
+
+          <div class="fee-card">
+            <div class="fee-header">
+              <h3 class="fee-title">Student Activity Fee</h3>
+            </div>
+            <div class="fee-amount">₹6,225</div>
+            <div class="fee-status">
+              <span class="status-badge status-paid">✓ Paid</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="fee-summary">
+          <div class="summary-item">
+            <span class="summary-label">Total Amount Due:</span>
+            <span class="summary-value">₹10,600</span>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Total Paid:</span>
+            <span class="summary-value">₹2,23,675</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Notices Section -->
+      <div class="campus-section">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Recent Notices</h2>
+            <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.95);">Latest updates and announcements from the university.</p>
+          </div>
+          <button class="view-all-btn" onclick="loadPage('notices')">
+            View All →
+          </button>
+        </div>
+        
+        <div class="notices-list">
+          <div class="notice-item">
+            <h3 class="notice-title" style="color: #ffffff;">Mid-Term Examination Schedule</h3>
+            <span class="notice-date" style="color: rgba(255, 255, 255, 0.9);">2024-09-15</span>
+          </div>
+          <div class="notice-item">
+            <h3 class="notice-title" style="color: #ffffff;">Annual Tech Fest 'Innovate 2024'</h3>
+            <span class="notice-date" style="color: rgba(255, 255, 255, 0.9);">2024-09-12</span>
+          </div>
+          <div class="notice-item">
+            <h3 class="notice-title" style="color: #ffffff;">Library Extension Hours - Semester Break</h3>
+            <span class="notice-date" style="color: rgba(255, 255, 255, 0.9);">2024-09-10</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
